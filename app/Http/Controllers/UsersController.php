@@ -75,14 +75,4 @@ class UsersController extends Controller
             return back()->with("incorrecto", "Error al eliminar");
         }
     }
-
-    public function verification($password)
-    {
-        try {
-            $decrypted = Crypt::decrypt($password);
-        } catch (DecryptException $e) {
-            
-        }
-        return view("prints")->with("clave", $decrypted);
-    }
 }

@@ -70,7 +70,6 @@
                     <th scope="col">APELLIDO</th>
                     <th scope="col">CORREO</th>
                     <th scope="col">CONTRASEÑA CIFRADA</th>
-                    <th scope="col">CONTRASEÑA</th>
                     <th scope="col">ACCIONES</th>
                 </tr>
             </thead>
@@ -82,13 +81,14 @@
                         <td>{{ $item->Apellido }}</td>
                         <td>{{ $item->Correo }}</td>
                         <td>{{ $item->Contraseña}}</td>
-                        <td>{{ $item->Password}}</td>
                         <td>
                             <a href="" class="btn btn-warning btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#modalEditar{{ $item->id_usuario }}"><i
                                     class="fa-solid fa-pen-to-square"></i></a>
                             <a href="{{ route('users.delete', $item->id_usuario) }}" onclick="return res()"
                                 class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
+                            <a href="" class="btn btn-success btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#modalVer{{ $item->id_usuario }}"><i class="fa-solid fa-eye"></i></a>
                         </td>
 
                         <!-- Modal de Modificar-->
@@ -145,6 +145,51 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Cerrar</button>
                                                 <button type="submit" class="btn btn-primary">Modificar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal de Ver-->
+                        <div class="modal fade" id="modalVer{{ $item->id_usuario }}" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Inspeccionar Contraseña
+                                        </h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="" method="post">
+                                            @csrf
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Codigo del
+                                                    usuario</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                    aria-describedby="emailHelp" name="txtcodigo"
+                                                    value="{{ $item->id_usuario }}" readonly>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Contraseña del
+                                                    usuario sin cifrar</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                    aria-describedby="emailHelp" name="txtcontraseña"
+                                                    value="{{ $item->Contraseña }}" readonly>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Contraseña del
+                                                    usuario cifrada</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                    aria-describedby="emailHelp" name="txtcontraseña"
+                                                    value="{{ $item->Password }}" readonly>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cerrar</button>
                                             </div>
                                         </form>
                                     </div>
