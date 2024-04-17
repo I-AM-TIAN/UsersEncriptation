@@ -24,3 +24,6 @@ Route::post("/modificar-producto",[UsersController::class,"update"])->name("user
 
 //Ruta para eliminar un producto
 Route::get("/eliminar-producto-{id}",[UsersController::class,"delete"])->name("users.delete");
+
+//Ruta para verificar una contraseña
+Route::get("/verificar-{password}",[UsersController::class,"verification"])->name("users.verify");
